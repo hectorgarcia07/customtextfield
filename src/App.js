@@ -1,24 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from '@mui/material/styles';
+import { custom_theme } from './theme/custom_theme.js';
+import PageControlContextProvider from './hooks/PageControlContextProvider';
+import FormikComponent from './components/FormikComponent/FormikComponent'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={custom_theme}>
+      <PageControlContextProvider>
+        <FormikComponent />
+      </PageControlContextProvider>
+  </ThemeProvider>
   );
 }
 
