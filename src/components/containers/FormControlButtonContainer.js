@@ -1,25 +1,10 @@
-import { Box } from '@mui/system';
 import { usePageValues } from '../../hooks/PageControlContextProvider';
-import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/material/styles';
 import { useFormikContext } from 'formik';
 
 const FormControlButtonContainer = () => {
     const [ pageState, dispatch] = usePageValues()
     const { errors, isValid, ...props } = useFormikContext()
-    const theme = useTheme()
-
-    const styles = {
-        backgroundColor: `${ theme.colors.neutral.white }`,
-        padding: '0.5rem 0rem',
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'space-between',
-
-        [theme.breakpoints.up(`${theme.breakpoints.values.desktop}`)]: {
-            padding: '1rem 0rem',
-        },
-    }
 
     const BaseButton = styled('button')(({ theme }) => ({
         padding: '0.7rem 1rem',
@@ -41,17 +26,6 @@ const FormControlButtonContainer = () => {
         },
     }));
 
-    const BackButton = styled(BaseButton)(({ theme }) => ({
-        visibility: `${ pageState.curr_form_page === 0 ? 'hidden' : 'visible' }`,
-
-        border: 'none',
-        color: `${ theme.colors.neutral.cool_gray }`,
-
-        ['&:hover']: {
-            color: `${ theme.colors.primary.marine_blue }`,
-            backgroundColor: 'white'
-        }
-    }));
 
     const NextButton = styled(BaseButton)(({ theme }) => ({
         color: `${ theme.colors.neutral.white }`,
@@ -63,54 +37,20 @@ const FormControlButtonContainer = () => {
         }
     }));
 
-    const SubmitButton = styled(BaseButton)(({ theme }) => ({
-        color: `${ theme.colors.neutral.white }`,
-        backgroundColor: `${ theme.colors.primary.purplish_blue }`,
-        borderRadius: '5px',
-
-        ['&:hover']: {
-            backgroundColor: `${ theme.colors.primary.light_blue }`,
-            color: `black`
-        }
-    }));
-
-
     return (
         pageState.curr_form_page === 4 
         ?
         null
         :
-        <Box sx={styles}>
-            <BackButton 
+        <NextButton 
                 type="button"
-                onClick={ () => dispatch( { type: 'PREV_FORM_PAGE' } ) }
-                name={'Back-Button'}
+                onClick={ () => dispatch( { type: 'NEXT_FORM_PAGE' } ) }
                 onMouseDown={ event => { event.preventDefault() }}
-                disabled={ !isValid || !!Object.keys(errors).length}
+                name={'Next-Button'}
+                disabled={ !isValid || !!Object.keys(errors).length }
             >
-                Go Back
-            </BackButton>
-            {
-                pageState.curr_form_page === 3 
-                ?
-                <SubmitButton 
-                    type="submit"
-                    name={'Submit-Button'}
-                >
-                    Submit
-                </SubmitButton> 
-                :
-                <NextButton 
-                    type="button"
-                    onClick={ () => dispatch( { type: 'NEXT_FORM_PAGE' } ) }
-                    onMouseDown={ event => { event.preventDefault() }}
-                    name={'Next-Button'}
-                    disabled={ !isValid || !!Object.keys(errors).length }
-                >
-                    Next Step
-                </NextButton>
-            }
-        </Box>
+                Next Step
+        </NextButton> 
     )
 }
 

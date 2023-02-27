@@ -16,10 +16,14 @@ const CustomInputField = ({ field, form: { touched, errors }, ...props }) => {
     return (
         <FormControlUnstyled { ...field } error={ error } required >
             <Box>
+                {/*Is used to display field title*/}
                 <h1 htmlFor={field.name}  error={ error }>{props.label}</h1>
+
+                {/*Is used to display erros*/}
                 <p id={`${field.name}-error-text`} error={error}>{errors[field.name]}</p>
             </Box>
 
+            {/*Is the custom field input*/}
             <CustomInput
                 id={props.id}
                 name={field.name}

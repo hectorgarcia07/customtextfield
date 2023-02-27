@@ -1,9 +1,9 @@
 import { Formik } from 'formik';
 import PlanSelection, { initialValues } from '../../YupSchema/planSelection'
 import FormControlButtonContainer from '../containers/FormControlButtonContainer'
-import FormLayout from '../FormComponents/FormLayout'
 import  { usePageValues } from '../../hooks/PageControlContextProvider'
 import { Box } from '@mui/material';
+import PersonalInfoForm from '../FormPages/PersonalInfoForm'
 
 const FormikComponent = () => {
   const [ , dispatch] = usePageValues()
@@ -22,7 +22,7 @@ const FormikComponent = () => {
               <Box>
                 <form onSubmit={props.handleSubmit}>
                   <Box>
-                    <FormLayout />
+                    <PersonalInfoForm />
                     <FormControlButtonContainer />  
                   </Box>
                 </form>
