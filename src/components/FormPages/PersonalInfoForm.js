@@ -27,27 +27,6 @@ THIS is where i need help. I'm not sure if I built my custom input form correctl
 
         component={CustomInputField} 
       />
-
-      <Field 
-        key={`personalInfo-email`}
-        name="email"
-        id="email"
-        placeholder="e.g. stephenking@lorem.com" 
-        label="Email Address"
-
-        component={CustomInputField} 
-      />
-
-      <Field 
-        key={`personalInfo-phone`}
-        name="phone"
-        id="phone"
-        placeholder="e.g. +1 123 123 1234" 
-        label="Phone Number"
-        maxLength={15}
-
-        component={CustomInputField} 
-      />
     </FormControlUnstyled>
   );
 }
